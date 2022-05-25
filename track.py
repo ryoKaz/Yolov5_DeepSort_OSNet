@@ -87,11 +87,13 @@ def detect(opt):
 
     # Dataloader
     if webcam:
+        print("is webcam!")
         show_vid = check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
     else:
+        print("not webcam!")
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = 1
     vid_path, vid_writer, txt_path = [None] * nr_sources, [None] * nr_sources, [None] * nr_sources
