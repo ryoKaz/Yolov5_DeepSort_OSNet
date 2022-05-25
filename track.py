@@ -205,7 +205,7 @@ def detect(opt):
                             # Write MOT compliant results to file
                             with open(txt_path + '.txt', 'a') as f:
                                 f.write(('%g ' * 10 + '\n') % (frame_idx + 1, id, bbox_left,  # MOT format
-                                                               bbox_top, bbox_w, bbox_h, -1, -1, -1, i))
+                                                               bbox_top, bbox_w, bbox_h, -1, -1, -1, int(cls)))
 
                         if save_vid or save_crop or show_vid:  # Add bbox to image
                             c = int(cls)  # integer class
@@ -252,7 +252,7 @@ def detect(opt):
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(yolo_model)  # update model (to fix SourceChangeWarning)
-
+    return save_dir
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
